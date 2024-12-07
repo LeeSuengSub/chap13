@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+
+        <h1 class="mt-4">Board Register Page</h1>
+
+        <form class th:action="@{/board/delete/{bno}(bno=${board.bno})}" th:method="delete" >
+			<div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" name="bno" 
+                       placeholder="boardNo" 
+                       th:value="${board.bno}">
+            </div>
+			
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" name="title" 
+                       placeholder="Enter Title" 
+                       th:value="${board.title}">
+            </div>
+            <div class="form-group">
+                <label>Content</label>
+                <textarea class="form-control" rows="5" name="content" 
+                          th:text="${board.content}"></textarea>
+            </div>
+
+			<form th:action="@{/board/delete/{bno}(bno=${board.bno})}" method="post">
+			    <input type="hidden" name="_method" value="delete" /> <!-- POST to DELETE -->
+			    <button type="submit" class="btn btn-danger">Delete</button>
+			</form>
+
+        </form>
+
+    </th:block>
+
+</th:block>
